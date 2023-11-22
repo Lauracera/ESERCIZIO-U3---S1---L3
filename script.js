@@ -30,10 +30,10 @@ var Lavoratore = /** @class */ (function (_super) {
         return result2;
     };
     Lavoratore.prototype.getTasseIrpef = function () {
-        return 0;
+        return this.redditoLordo * 0.5;
     };
     Lavoratore.prototype.getTasseInps = function () {
-        return 0;
+        return this.redditoLordo * 0.25;
     };
     Lavoratore.prototype.getTasseNetto = function () {
         return this.getUtileTasse() - this.getTasseIrpef() - this.getTasseInps();
@@ -59,19 +59,22 @@ var Professionista = /** @class */ (function (_super) {
     };
     return Professionista;
 }(Lavoratore));
-var newProfessionista = new Professionista(1000);
-console.log(Professionista);
-console.log(newProfessionista);
+var newProfessionista = new Professionista(0);
+console.log("Utile tasse professionista: " + newProfessionista.getUtileTasse());
 var Artigiano = /** @class */ (function (_super) {
     __extends(Artigiano, _super);
     function Artigiano() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Artigiano.prototype.getTasseIrpef = function () {
-        return this.getUtileTasse() * 0.15;
+        var resultIrpef = this.getUtileTasse() * 0.15;
+        var resultIrpef2 = this.getUtileTasse() - resultIrpef;
+        return resultIrpef2;
     };
     Artigiano.prototype.getTasseInps = function () {
-        return this.getUtileTasse() * 0.15;
+        var resultInps = this.getUtileTasse() * 0.15;
+        var resultInps2 = this.getUtileTasse() - resultInps;
+        return resultInps2;
     };
     return Artigiano;
 }(Lavoratore));
@@ -81,10 +84,14 @@ var Commerciante = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Commerciante.prototype.getTasseIrpef = function () {
-        return this.getUtileTasse() * 0.15;
+        var resultIrpef = this.getUtileTasse() * 0.15;
+        var resultIrpef2 = this.getUtileTasse() - resultIrpef;
+        return resultIrpef2;
     };
     Commerciante.prototype.getTasseInps = function () {
-        return this.getUtileTasse() * 0.35;
+        var resultInps = this.getUtileTasse() * 0.35;
+        var resultInps2 = this.getUtileTasse() - resultInps;
+        return resultInps2;
     };
     return Commerciante;
 }(Lavoratore));

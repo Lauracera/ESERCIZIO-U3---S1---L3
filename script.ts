@@ -20,11 +20,11 @@ class Lavoratore extends Tasse {
   }
 
   getTasseIrpef(): number {
-    return 0;
+    return this.redditoLordo * 0.5;
   }
 
   getTasseInps(): number {
-    return 0;
+    return this.redditoLordo * 0.25;
   }
 
   getTasseNetto(): number {
@@ -58,20 +58,28 @@ console.log("Utile tasse professionista: " + newProfessionista.getUtileTasse());
 
 class Artigiano extends Lavoratore {
   getTasseIrpef() {
-    return this.getUtileTasse() * 0.15;
+    let resultIrpef = this.getUtileTasse() * 0.15;
+    let resultIrpef2 = this.getUtileTasse() - resultIrpef;
+    return resultIrpef2;
   }
 
   getTasseInps() {
-    return this.getUtileTasse() * 0.15;
+    let resultInps = this.getUtileTasse() * 0.15;
+    let resultInps2 = this.getUtileTasse() - resultInps;
+    return resultInps2;
   }
 }
 
 class Commerciante extends Lavoratore {
   getTasseIrpef() {
-    return this.getUtileTasse() * 0.15;
+    let resultIrpef = this.getUtileTasse() * 0.15;
+    let resultIrpef2 = this.getUtileTasse() - resultIrpef;
+    return resultIrpef2;
   }
 
   getTasseInps() {
-    return this.getUtileTasse() * 0.35;
+    let resultInps = this.getUtileTasse() * 0.35;
+    let resultInps2 = this.getUtileTasse() - resultInps;
+    return resultInps2;
   }
 }
